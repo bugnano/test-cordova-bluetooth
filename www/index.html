@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
+    Copyright 2016 Franco Bugnano
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
     http://www.apache.org/licenses/LICENSE-2.0
 
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
 -->
 <html>
     <head>
@@ -32,17 +29,68 @@
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="css/index.css">
-        <title>Hello World</title>
+
+        <title>Test Bluetooth</title>
     </head>
     <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+        <div class="container-fluid">
+            <h1>Bluetooth</h1>
+            <ul class="list-group">
+                <li class="list-group-item">adapter event: <span id="adapterEvent"></span></li>
+                <li class="list-group-item">adapter.address: <span id="adapterAddress"></span></li>
+                <li class="list-group-item">adapter.name: <span id="adapterName"></span></li>
+                <li class="list-group-item">adapter.enabled: <span id="adapterEnabled"></span></li>
+                <li class="list-group-item">adapter.discovering: <span id="adapterDiscovering"></span></li>
+                <li class="list-group-item">adapter.discoverable: <span id="adapterDiscoverable"></span></li>
+            </ul>
+            <button type="button" id="btnRequestDiscoverable" class="btn btn-primary btn-lg btn-block">Request discoverable</button>
+            <h1>Known devices</h1>
+            <div id="lstKnownDevs" class="list-group">
             </div>
+            <button type="button" id="btnStartDiscovery" class="btn btn-primary btn-lg btn-block">Start discovery</button>
+            <h1>Discovered devices</h1>
+            <div id="lstDiscoveredDevs" class="list-group">
+            </div>
+            <button type="button" id="btnStopDiscovery" class="btn btn-primary btn-lg btn-block">Stop discovery</button>
+            <h1>Device</h1>
+            <ul class="list-group">
+                <li class="list-group-item">device.address: <span id="deviceAddress"></span></li>
+                <li class="list-group-item">device.name: <span id="deviceName"></span></li>
+                <li class="list-group-item">device.paired: <span id="devicePaired"></span></li>
+                <li class="list-group-item">device.uuids: <span id="deviceUuids"></span></li>
+            </ul>
+            <h1>Socket Info</h1>
+            <ul class="list-group">
+                <li class="list-group-item">receive error count: <span id="receiveErrorCount"></span></li>
+                <li class="list-group-item">receive errorInfo.socketId: <span id="receiveErrorSocketId"></span></li>
+                <li class="list-group-item">receive errorInfo.errorMessage: <span id="receiveErrorMessage"></span></li>
+                <li class="list-group-item">accept error count: <span id="acceptErrorCount"></span></li>
+                <li class="list-group-item">accept errorInfo.socketId: <span id="acceptErrorSocketId"></span></li>
+                <li class="list-group-item">accept errorInfo.errorMessage: <span id="acceptErrorMessage"></span></li>
+                <li class="list-group-item">createInfo.socketId: <span id="createSocketId"></span></li>
+                <li class="list-group-item">acceptInfo.clientSocketId: <span id="clientSocketId"></span></li>
+            </ul>
+            <h1>Server Socket</h1>
+            <button type="button" id="btnListen" class="btn btn-primary btn-lg btn-block">Listen</button>
+            <h1>Client Socket</h1>
+            <ul class="list-group">
+                <li class="list-group-item">Connected: <span id="connected"></span></li>
+            </ul>
+            <button type="button" id="btnConnect" class="btn btn-primary btn-lg btn-block">Connect</button>
+            <h1>Ping</h1>
+            <ul class="list-group">
+                <li class="list-group-item">Tx Count: <span id="txCount"></span></li>
+                <li class="list-group-item">Rx Count: <span id="rxCount"></span></li>
+                <li class="list-group-item">Rx Data Len: <span id="rxDataLen"></span></li>
+                <li class="list-group-item">Rx Data: <span id="rxData"></span></li>
+                <li class="list-group-item">Ping time: <span id="pingTime"></span></li>
+            </ul>
+            <button type="button" id="btnPing" class="btn btn-primary btn-lg btn-block">Ping</button>
         </div>
+
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
     </body>
